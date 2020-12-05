@@ -1,24 +1,55 @@
-# README
+## users テーブル
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+|Column          | Type    | Options    |
+| -------------- | ------- | ---------- |
+| ユーザー新規登録  | string  | null:false |
+| ユーザー名       | string  | null:false |
+| ログイン         | string  | null:false | 
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_many :ユーザー新規登録
+- has many :ユーザー名
+- has many :ログイン 
 
-* Configuration
 
-* Database creation
+## products テーブル
 
-* Database initialization
+|Column   | Type   | Options   |
+| ------  | ------ | --------- |
+| 商品出品 | string | null:false |
+| 商品情報 | string | null:false |
+| 写真    | string | null:false |
 
-* How to run the test suite
+### Association
 
-* Services (job queues, cache servers, search engines, etc.)
+- has_many :商品出品
+- has_many :商品情報
+- has_many :写真
 
-* Deployment instructions
 
-* ...
+## Address テーブル
+
+| Column  | Type   | Options      | 
+| ------- | ------ | ------------ |
+| 住所     | string  | null:false |
+| 郵便番号  | string  | null:false |
+
+### Association
+
+- belongs_to :住所
+- belongs_to :郵便番号
+
+
+## Purchase information テーブル
+
+| Column  | Type    | Options    |
+| ------- | ------- | ---------- | 
+| 購入機能 | string  | null:false |
+
+### Association
+
+-  has_many 購入機能
+
+
