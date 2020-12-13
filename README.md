@@ -15,7 +15,6 @@
 ### Association
 
 - has_many :products
-- has_one :address
 
 
 
@@ -54,7 +53,7 @@
 ### Association
 
 - has_one :purchase_information
-- has_one :user
+- belongs_to :user
 
 
 ## Purchase information テーブル
@@ -67,7 +66,7 @@
 
 ### Association
 
-- has_one :purchase_information
+- has_one :address
 - has_one :product
-
+- has_one :user
 
