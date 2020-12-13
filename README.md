@@ -27,9 +27,9 @@
 | name                   | string     | null:false                    |
 | details                | text       | null:false                    |
 | price                  | integer    | null:false                    |
-| category_id            | string     | null:false                    |
-| status_id              | string     | null:false                    |
-| shipping_charges_id    | string     | null:false                    |
+| category_id            | integer    | null:false                    |
+| status_id              | integer    | null:false                    |
+| shipping_charges_id    | integer    | null:false                    |
 | prefectures_id         | integer    | null:false                    |
 | days_to_skip_id        | string     | null:false                    |
 
@@ -65,9 +65,11 @@
 | user     | references | null: false, foreign_key: true |
 | item     | references | null: false, foreign_key: true |
 
+### Association
+
 - belongs_to :user
 - belongs_to :item
+- has_one :address
 
-### Association
 
 
