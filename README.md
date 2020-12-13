@@ -15,7 +15,7 @@
 ### Association
 
 - has_many :products
-- has_many :purchase_information
+- has_many :purchases_information
 
 
 
