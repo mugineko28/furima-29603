@@ -15,21 +15,23 @@
 ### Association
 
 - has_many :products
+- has_many :purchase_information
 
 
 
 ## products テーブル
 
-|Column                  | Type    | Options    |
-| ---------------------- | ------- | ---------- |
-| name                   | string  | null:false |
-| details                | text    | null:false |
-| price                  | integer | null:false |
-| category_id            | string  | null:false |
-| status_id              | string  | null:false |
-| shipping_charges_id    | string  | null:false |
-| shipping_area_id       | string  | null:false |
-| days_to_skip_id        | string  | null:false |
+|Column                  | Type       | Options                       |
+| ---------------------- | ---------- | ----------------------------- |
+| user                   | references | null:false, foreign_key: true |
+| name                   | string     | null:false                    |
+| details                | text       | null:false                    |
+| price                  | integer    | null:false                    |
+| category_id            | string     | null:false                    |
+| status_id              | string     | null:false                    |
+| shipping_charges_id    | string     | null:false                    |
+| prefectures_id         | integer    | null:false                    |
+| days_to_skip_id        | string     | null:false                    |
 
 
 ### Association
@@ -42,7 +44,7 @@
 | Column                | Type        | Options                         | 
 | --------------------- | ----------- | ------------------------------- |
 | street_address        | string      | null:false                      |
-| prefectures_id        | string      | null:false                      |
+| prefectures_id        | integer     | null:false                      |
 | postal_code           | string      | null:false                      |
 | municipality          | string      | null:false                      |
 | building_name         | string      |                                 |
@@ -52,21 +54,20 @@
 
 ### Association
 
-- has_one :purchase_information
-- belongs_to :user
+- belongs_to :purchase_information
+
 
 
 ## Purchase information テーブル
 
-| Column  | Type       | Options                        |
-| ------- | ---------- | ------------------------------ | 
-| user    | references | null: false, foreign_key: true |
-| item    | references | null: false, foreign_key: true |
+| Column   | Type       | Options                        |
+| -------- | ---------- | ------------------------------ | 
+| user     | references | null: false, foreign_key: true |
+| item     | references | null: false, foreign_key: true |
 
+- belongs_to :user
+- belongs_to :item
 
 ### Association
 
-- has_one :address
-- has_one :product
-- has_one :user
 
