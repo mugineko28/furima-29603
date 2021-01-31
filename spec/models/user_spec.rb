@@ -9,28 +9,7 @@ describe User do
       it "nicknameとemail、passwordとpassword_confirmationが存在すれば登録できる" do
         expect(@user).to be_valid
       end
-      it "nicknameが6文字以下で登録できる" do
-        @user.nickname = "test"
-        expect(@user).to be_valid
-      end
-      it "passwordが6文字以上であれば登録できる" do
-        @user.password = "neco345"
-        @user.password_confirmation = "neco345"
-        expect(@user).to be_valid
-      end
 
-      it "firstnameとlast_name、firstname_readingとlast_namereadingが存在すれば登録できる" do
-        expect(@user).to be_valid
-        @user.first_name = "智也"
-        @user.last_name = "長瀬"
-        @user.first_name_reading = "トモヤ"
-        @user.last_name_reading = "ナガセ"
-      end
-
-      it "birthdayが存在すれば登録できる" do
-
-      end
-      
     end
 
     context '新規登録がうまくいかないとき' do
@@ -62,6 +41,20 @@ describe User do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
       end
+      it "passwordが英語のみでは登録できない" do
+        @user.password ="aaaaaa"
+        @user.password_confirmation = "aaaaaa"
+        @user.valid?
+      
+        expect(@user.errors.full_messages).to include("Password is invalid")
+      end
+      it "passwordが全角では登録できない" do
+      @user.password = "ｈｉｒａｇａｎａ"
+      @user.password_confirmation = "ｈｉｒａｇａｎａ"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password is invalid")
+    end
+
       it "passwordが存在してもpassword_confirmationが空では登録できない" do
         @user.password_confirmation = ""
         @user.valid?
