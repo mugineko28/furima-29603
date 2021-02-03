@@ -1,4 +1,7 @@
 class ItemsController < ApplicationController
+ before_action :authenticate_user!, only: [:new ]
+ #before_action :move_to_index, expect: [:new, :create]
+
 
 def index
   @items = Item.all
