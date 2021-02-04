@@ -64,3 +64,5 @@ gem 'pry-rails'
 gem 'mini_magick'
 
 gem 'ransack'
+
+gem 'active_hash'
