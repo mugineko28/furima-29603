@@ -1,16 +1,9 @@
 class Item < ApplicationRecord
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :category
   
-  with_options presence: true do
-  validates :user
-  validates :name
-  validates :details
-  validates :price
-  validates :category_id
-  validates :status_id
-  validates :shipping_charges_id
-  validates :day_to_skup_id
+    validates :user, :name,:details,:price,
+              :category_id,:status_id,:shipping_charges_id,
+              :prefecture_id,:day_to_skip_id, presence: true
+    validates :genre_id, numericality: { other_than: 1 } 
   end
-  
-end
