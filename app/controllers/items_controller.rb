@@ -8,7 +8,7 @@ def index
 end
 
 def new
-  @items = Item.new
+  @item = Item.new
 end
 
 def create
