@@ -7,7 +7,7 @@ class Item < ApplicationRecord
               :prefecture_id,:day_to_skip_id, presence: true
 
 
-    with options numericality: { other_than: 1 } do
+    with_options numericality: { other_than: 1 } do
       validates :category_id
       validates :status_id
       validates :shipping_charges
