@@ -43,6 +43,18 @@ RSpec.describe Item do
       expect(@item.errors.full_messages).to include("Price Half-width number")
     end
 
+    it "priceが半角英語だと出品できない" do
+      @item.price = "aAaA"
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price Out of setting range")
+    end
+
+    it "priceが半角英数混合だと出品できない" do
+      @item.price = "A1000"
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price Out of setting range")
+    end
+
     it "priceが299円以下だと出品できない" do
       @item.price = 299
       @item.valid?
