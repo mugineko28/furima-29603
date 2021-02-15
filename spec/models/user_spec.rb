@@ -86,6 +86,27 @@ describe User do
         @user.valid?
         expect(@user.errors.full_messages).to include("Birthday can't be blank")
       end
+      it 'first_name:全角（漢字・ひらがな・カタカナ）' do
+        @user.first_name = "ﾊﾝｶｸ"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name is invalid")
+      end
+      it 'last_name:全角（漢字・ひらがな・カタカナ）' do
+        @user.last_name = "ﾊﾝｶｸ"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name is invalid")
+      end
+      it 'first_name_reading:全角（カタカナ）でないと登録できない' do
+        @user.first_name_reading = "ﾊﾝｶｸ"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name reading Full-width katakana characters")
+        
+      end
+      it 'last_name_reading:全角（カタカナ）でないと登録できない' do
+        @user.last_name_reading = "ﾊﾝｶｸ"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name reading Full-width katakana characters")
+      end
     end
   end
 end

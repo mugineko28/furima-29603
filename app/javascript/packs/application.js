@@ -7,6 +7,7 @@ require("@rails/ujs").start()
 //require("turbolinks").start() この行は削除 turbokinksはアプリケーション作成時は標準で有効
 require("@rails/activestorage").start()
 require("channels")
+require("../new")
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
