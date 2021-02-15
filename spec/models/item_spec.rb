@@ -62,10 +62,22 @@ RSpec.describe Item do
       expect(@item.errors.full_messages).to include("Category can't be blank")
     end
 
+    it "category_idが1では出品できない" do
+      @item.category_id = 1
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Category must be other than 1")
+    end
+
     it "status_idが選択されていなければ出品できない" do
       @item.status_id = ""
       @item.valid?
       expect(@item.errors.full_messages).to include("Status can't be blank")
+    end
+
+    it "status_idが1では出品できない" do
+      @item.status_id = 1
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Status must be other than 1")
     end
 
     it "shipping_charges_idが選択されていなければ出品できない" do
@@ -74,10 +86,23 @@ RSpec.describe Item do
       expect(@item.errors.full_messages).to include("Shipping charges is not a number")
     end
 
+    it "shipping_charges_idが1では出品できない" do
+      @item.shipping_charges_id = 1
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Shipping charges must be other than 1")
+    end
+
+
     it "prefecture_idが選択されていなければ出品できない" do
       @item.prefecture_id = ""
       @item.valid?
       expect(@item.errors.full_messages).to include("Prefecture can't be blank")
+    end
+
+    it "prefecture_idが1では出品できない" do
+      @item.prefecture_id = 1
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
     end
 
     it "day_to_skip_idが選択されていなければ出品できない" do
@@ -86,8 +111,11 @@ RSpec.describe Item do
       expect(@item.errors.full_messages).to include("Day to skip can't be blank")
     end
 
-
+    it "day_to_skip_idが1では出品できない" do
+      @item.day_to_skip_id = 1
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Day to skip must be other than 1")
+    end
   end
-
-   end
+ end
 end
