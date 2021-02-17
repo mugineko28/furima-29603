@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
- before_action :authenticate_user!, only: [:new, :create ]
+ before_action :authenticate_user!, only: [:new, :create, :edit, :update ]
  before_action :set_item, only: [:show, :edit, :update ] 
 
 def index
@@ -40,7 +40,7 @@ end
             :shipping_charges_id, :prefecture_id, :day_to_skip_id)
             .merge(user_id: current_user.id)
   end
-  
+
   def set_item
     @item = Item.find(params[:id])
   end
