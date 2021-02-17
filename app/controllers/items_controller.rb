@@ -33,15 +33,15 @@ def create
   end
 end
 
-def set_item
-  @item = Item.find(params[:id])
-end
-
  private
   def item_params
     params.require(:item).
      permit(:name, :details, :image, :price, :category_id, :status_id, 
             :shipping_charges_id, :prefecture_id, :day_to_skip_id)
             .merge(user_id: current_user.id)
+  end
+  
+  def set_item
+    @item = Item.find(params[:id])
   end
 end
