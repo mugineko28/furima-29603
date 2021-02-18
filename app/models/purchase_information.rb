@@ -1,3 +1,8 @@
 class PurchaseInformation < ApplicationRecord
 
-end
+  belongs_to :user
+  belongs_to :item
+  has_one :address
+ 
+ end
+ 
