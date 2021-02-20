@@ -1,4 +1,4 @@
-class UserAddress
+class AddressForm
   include ActiveModel::Model
   attr_accessor :street_address, :prefecture_id, :postal_code, 
                 :municipality, :building_name, :phone_number,
@@ -11,13 +11,10 @@ class UserAddress
      validates :prefecture_id
      validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)" }
      validates :municipality,  format: { with: /\A[ぁ-んァ-ヶ一-龥々]+\z/ }
-     validates :phone_number, format: {with: /\A[0-9]+\z/}
+     validates :building_name
+     validates :phone_number, format: { with: /\A[0-9]+\z/ , message: "phone number can't be blank"}
      validates :purchase_information
     end
-
-
-
-
 
   def save
 
