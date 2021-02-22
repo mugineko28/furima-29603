@@ -1,24 +1,31 @@
 class PurchaseInformationController < ApplicationController
+
+before_action :item_image, only: [:index, :create]
+
   def index
-    @item = Item.find(params[:item_id])
     @address_form = AddressForm.new
   end
 
   def create
-    binding.pry
     @address_form = AddressForm.new(item_params)
-    if redirect_to root_path
+    if @address_form.valid?
+       @address_form.save
+      redirect_to root_path
+    else 
+      render action: :index
     end
   end
 
 
 private
-def item_params
+  def item_params
   params.require(:address_form).
    permit(:street_address, :prefecture_id, :postal_code, :municipality,
-          :building_name, :phone_number, :PurchaseInformation_id, 
-          :user_id, :item_id)
-          .merge(user_id: current_user.id)
-          
+          :building_name, :phone_number)
+          .merge(user_id: current_user.id, item_id: params[:item_id])
+  end
 
+  def item_image
+    @item = Item.find(params[:item_id])
+  end
 end
