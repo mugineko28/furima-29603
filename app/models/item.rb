@@ -7,6 +7,7 @@ class Item < ApplicationRecord
   belongs_to :day_to_skip
   belongs_to :user
   has_one_attached :image
+  has_one :purchase_information
   
     validates :name,:details,:price,:image,
               :category_id,:status_id,:shipping_charges_id,
