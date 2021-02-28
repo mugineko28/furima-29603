@@ -1,8 +1,10 @@
 class PurchaseInformationController < ApplicationController
-
 before_action :item_image, only: [:index, :create]
 
   def index
+    if @item.purchase_information.present?
+      redirect_to root_path
+    end
     @address_form = AddressForm.new
   end
 
@@ -28,4 +30,5 @@ private
   def item_image
     @item = Item.find(params[:item_id])
   end
-end
+
+  end
