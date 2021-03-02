@@ -31,7 +31,7 @@ RSpec.describe AddressForm do
      it '郵便番号が-なしでは購入できない' do
       @address_form.postal_code = "1111111" 
       @address_form.valid?
-      expect(@address_form.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+      expect(@address_form.errors.full_messages).to include("Postal code is invalid")
      end
 
      it "都道府県が選択されていないと購入できない" do
