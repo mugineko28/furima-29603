@@ -9,8 +9,10 @@ before_action :item_image, only: [:index, :create]
   end
 
   def create
+    
     @address_form = AddressForm.new(item_params)
     if @address_form.valid?
+      pay_item
        @address_form.save
       redirect_to root_path
     else 
@@ -19,7 +21,7 @@ before_action :item_image, only: [:index, :create]
   end
 
 
-private
+ private
   def item_params
   params.require(:address_form).
    permit(:token, :street_address, :prefecture_id, :postal_code, :municipality,
@@ -31,4 +33,13 @@ private
     @item = Item.find(params[:item_id])
   end
 
+  def pay_item
+    Payjp.api_key = "sk_test_378f200d948e50ecbfc63297"
+    Payjp::Charge.create(
+      amount: @item.price,
+      card: item_params[:token],
+      currency: 'jpy'
+    )
   end
+
+end
