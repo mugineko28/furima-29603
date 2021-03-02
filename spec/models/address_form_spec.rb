@@ -13,6 +13,10 @@ RSpec.describe AddressForm do
          番地、電話番号があれば購入できる' do
          expect(@address_form).to be_valid
       end
+
+      it "建物名が抜けていても購入できる" do
+        expect(@address_form).to be_valid
+      end
   end
 
    context '購入が失敗するとき' do
@@ -40,6 +44,12 @@ RSpec.describe AddressForm do
        expect(@address_form.errors.full_messages).to include("Prefecture is not a number")
      end
 
+     it "都道府県が1では登録できない" do
+       @address_form.prefecture_id = 1
+       @address_form.valid?
+       expect(@address_form.errors.full_messages).to include("Prefecture must be other than 1")
+     end
+
      it "市区町村が空では購入できない" do
        @address_form.municipality = ""
        @address_form.valid?
@@ -56,6 +66,18 @@ RSpec.describe AddressForm do
        @address_form.phone_number = ""
        @address_form.valid?
        expect(@address_form.errors.full_messages).to include("Phone number can't be blank")
+     end
+
+     it "電話番号が12桁以上では購入できない" do
+       @address_form.phone_number = 123456789123
+       @address_form.valid?
+       expect(@address_form.errors.full_messages).to include("Phone number is invalid")
+     end
+
+     it "電話番号が英数混合では購入できない" do
+       @address_form.phone_number = "1a1a1a1a1a1"
+       @address_form.valid?
+       expect(@address_form.errors.full_messages).to include("Phone number is invalid")
      end
    end
   end
