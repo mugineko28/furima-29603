@@ -79,6 +79,18 @@ RSpec.describe AddressForm do
        @address_form.valid?
        expect(@address_form.errors.full_messages).to include("Phone number is invalid")
      end
+
+     it "user_idが空では購入できない" do
+       @address_form.user_id = ""
+       @address_form.valid?
+       expect(@address_form.errors.full_messages).to include("User can't be blank")
+     end
+
+     it "item_idが空では購入できない" do
+      @address_form.item_id = ""
+      @address_form.valid?
+      expect(@address_form.errors.full_messages).to include("Item can't be blank")
+    end
    end
   end
 end
