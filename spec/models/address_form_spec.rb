@@ -62,6 +62,11 @@ RSpec.describe AddressForm do
       expect(@address_form.errors.full_messages).to include("Street address can't be blank")
      end
 
+     it "建物名が抜けていても購入できる" do
+      @address_form.building_name = ''
+      expect(@address_form).to be_valid
+    end
+
      it "電話番号が空では購入できない" do
        @address_form.phone_number = ""
        @address_form.valid?
