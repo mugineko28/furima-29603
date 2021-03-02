@@ -22,7 +22,7 @@ before_action :item_image, only: [:index, :create]
 private
   def item_params
   params.require(:address_form).
-   permit(:street_address, :prefecture_id, :postal_code, :municipality,
+   permit(:token, :street_address, :prefecture_id, :postal_code, :municipality,
           :building_name, :phone_number)
           .merge(user_id: current_user.id, item_id: params[:item_id])
   end

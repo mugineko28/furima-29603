@@ -19,6 +19,7 @@ class AddressForm
 
 
   def save
+    
    purchase_information = PurchaseInformation.create(user_id: user_id, item_id: item_id)
     Address.create(street_address: street_address, prefecture_id: prefecture_id, 
                    postal_code: postal_code, municipality: municipality, building_name: building_name, 
