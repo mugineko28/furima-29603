@@ -1,5 +1,6 @@
 class PurchaseInformationController < ApplicationController
-before_action :item_image, only: [:index, :create]
+  before_action :item_image, only: [:index, :create]
+  before_action :authenticate_user!
 
   def index
     if @item.purchase_information.present?
