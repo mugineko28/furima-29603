@@ -1,11 +1,12 @@
 class AddressForm
   include ActiveModel::Model
-  attr_accessor :street_address, :prefecture_id, :postal_code, 
+  attr_accessor :token, :street_address, :prefecture_id, :postal_code, 
                 :municipality, :building_name, :phone_number, :user_id, :item_id
 
     with_options presence: true do
      validates :user_id
      validates :item_id
+     validates :token
      validates :street_address, format: {with:/\A[ぁ-んァ-ン一-龥々]/, message: "Can't be blank"}
      validates :postal_code, format: { with:/\A\d{3}[-]\d{4}\z/ , message: "is invalid. Include hyphen(-)" }
      validates :municipality,  format: { with: /\A[ぁ-んァ-ヶ一-龥々]+\z/, message: "is invalid"}
