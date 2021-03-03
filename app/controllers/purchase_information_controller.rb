@@ -1,13 +1,9 @@
 class PurchaseInformationController < ApplicationController
   before_action :item_image, only: [:index, :create]
+  before_action :security, only: [:index, :create]
   before_action :authenticate_user!
 
   def index
-
-    if current_user == @item.user
-      redirect_to root_path
-      
-    end
     @address_form = AddressForm.new
   end
 
@@ -17,7 +13,6 @@ class PurchaseInformationController < ApplicationController
     if @address_form.valid?
       pay_item
        @address_form.save
-      redirect_to root_path
     else 
       render action: :index
     end
@@ -35,6 +30,16 @@ class PurchaseInformationController < ApplicationController
   def item_image
     @item = Item.find(params[:item_id])
   end
+
+  def security
+    if @item.purchase_information.present?
+      if current_user == @item.user
+        redirect_to root_path
+      end
+    end
+  end
+  
+
 
   def pay_item
     Payjp.api_key = "PAYJP_SECRET_KEY"
