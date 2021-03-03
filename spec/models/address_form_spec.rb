@@ -15,6 +15,7 @@ RSpec.describe AddressForm do
       end
 
       it "建物名が抜けていても購入できる" do
+        @address_form.building_name = ""
         expect(@address_form).to be_valid
       end
   end
