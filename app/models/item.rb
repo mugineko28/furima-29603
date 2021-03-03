@@ -13,7 +13,6 @@ class Item < ApplicationRecord
               :category_id,:status_id,:shipping_charges_id,
               :prefecture_id,:day_to_skip_id, presence: true
 
-
     with_options numericality: { other_than: 1 } do
       validates :category_id
       validates :status_id
