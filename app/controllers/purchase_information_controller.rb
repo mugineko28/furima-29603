@@ -3,8 +3,10 @@ class PurchaseInformationController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    if @item.purchase_information.present?
+
+    if current_user == @item.user
       redirect_to root_path
+      
     end
     @address_form = AddressForm.new
   end
