@@ -10,7 +10,7 @@ class AddressForm
      validates :street_address, format: {with: /\A[ぁ-んァ-ン一-龥々]/}
      validates :postal_code, format: { with: /\A\d{3}[-]\d{4}\z/  }
      validates :municipality,  format: { with: /\A[ぁ-んァ-ヶ一-龥々]+\z/}
-     validates :phone_number, format: { with: /\A[0-9]{10,11}+\z/}
+     validates :phone_number, format: { with: /\A\d{10,11}\z/}
     end
 
     with_options numericality: { other_than: 1 } do
