@@ -13,6 +13,7 @@ class PurchaseInformationController < ApplicationController
     if @address_form.valid?
       pay_item
        @address_form.save
+       redirect_to root_path
     else 
       render action: :index
     end
@@ -32,13 +33,10 @@ class PurchaseInformationController < ApplicationController
   end
 
   def security
-    if @item.purchase_information.present?
-      if current_user == @item.user
+   if @item.purchase_information.present? || current_user == @item.user
         redirect_to root_path
-      end
     end
   end
-  
 
 
   def pay_item
