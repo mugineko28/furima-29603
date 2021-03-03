@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
  before_action :authenticate_user!, only: [:new, :create, :edit, :update ]
  before_action :set_item, only: [:show, :edit, :update, :destroy ] 
  before_action :private_security, only: [:edit,:update, :destroy]
+ before_action :after_purchase, only: [:edit, :update, :destroy]
 
 def index
   @items = Item.order("created_at DESC")
@@ -36,7 +37,6 @@ end
 
 def destroy
   @item.destroy
-  redirect_to root_path
 end
 
  private
@@ -56,5 +56,11 @@ end
       redirect_to root_path
    end
   end 
+
+  def after_purchase
+    if @item.purchase_information.present?
+      redirect_to root_path
+    end
+  end
 
 end
