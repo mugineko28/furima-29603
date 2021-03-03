@@ -1,7 +1,8 @@
 class PurchaseInformationController < ApplicationController
   before_action :item_image, only: [:index, :create]
-  before_action :security, only: [:index, :create]
   before_action :authenticate_user!
+  before_action :security, only: [:index, :create]
+
 
   def index
     @address_form = AddressForm.new
