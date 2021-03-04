@@ -37,6 +37,7 @@ end
 
 def destroy
   @item.destroy
+  redirect_to root_path
 end
 
  private
@@ -49,6 +50,7 @@ end
 
   def set_item
     @item = Item.find(params[:id])
+
   end
 
   def private_security
